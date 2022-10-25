@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %} Courses {% endblock %}
 {% block content %}
-<h1>Courses</h1>
-
+<h1>Happy Buddy Pet </h1>
+<!-- scrable the data make the data in month names like october -->
 <div>
     <table class="table table-striped">
         <thead>
@@ -12,16 +12,21 @@
             <th scope="col">Start Date</th>
             <th scope="col">Length</th>
             <th scope="col">time</th>
+            <th scope="col">time</th>
+            <th scope="col">time</th>
             </tr>
         </thead>
-        {% for i in courseInfo %}
+        
         <tbody>
+            {% for i in courseInfo %}
             <tr>
-            <th scope="row">{{i}}</th>
+            <td scope="row"> <a href="{{url_for('courses', courseName = i)}}">{{i}}</a></td>
             <td>{{courseInfo[i]['pet_type']}}</td>
             <td>{{courseInfo[i]['start_date']}}</td>
             <td>{{courseInfo[i]['duration']}}</td>
             <td>{{courseInfo[i]['start_time']}}</td>
+            <td>{{courseInfo[i]['trainer']}}</td>
+
             </tr>
         {% endfor %}
     </tbody>
