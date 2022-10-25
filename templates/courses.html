@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %} Courses {% endblock %}
+{% block content %}
+<h1>Courses</h1>
+
+<div class="col-12 col-md-6">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Pet Type</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Length</th>
+            <th scope="col">time</th>
+            </tr>
+        </thead>
+        {% for i in courseInfo %}
+        <tbody>
+            <tr>
+            <th scope="row">{{i}}</th>
+            <td>{{courseInfo[i]['pet_type']}}</td>
+            <td>{{courseInfo[i]['start_date']}}</td>
+            <td>{{courseInfo[i]['duration']}}</td>
+            <td>{{courseInfo[i]['start_time']}}</td>
+            </tr>
+            {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+    
+
+{% endblock %}
+

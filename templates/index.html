@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}I211 Project 2.1{% endblock %}
+{% block content %}
+<h1>Pet courses!</h1>
+
+<div class="container">
+  <div class="row">
+    {% for i in courseInfo %}
+    <div class="col-12 col-md-6">
+      <h2>{{i}}</h2>
+      <h2>{{courseInfo[i]['pet_type']}}</h2>
+      <h5>{{courseInfo[i]['level']}}</h5>
+    </div>
+
+ 
+
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
