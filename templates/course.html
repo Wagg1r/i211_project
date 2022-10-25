@@ -2,8 +2,15 @@
 {% block title %} Course {% endblock %}
 {% block content %}
 <h1>Happy Buddy Pet </h1>
-
+<!-- level,start_date,start_time,duration,trainer,description -->
 <div>
-{{courseInfo, courseName}}
+{{courseName}}
+{{courseInfo['pet_type']}}
+{{courseInfo['level']}}
+{{courseInfo['start_date']}}
+{{courseInfo['pstart_time']}}
+{{courseInfo['duration']}}
+{{courseInfo['trainer']}}
+{{courseInfo['description']}}
 </div>
 {% endblock %}
