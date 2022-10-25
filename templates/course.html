@@ -1,16 +1,32 @@
 {% extends "base.html" %}
 {% block title %} Course {% endblock %}
 {% block content %}
-<h1>Happy Buddy Pet </h1>
+<h1>{{courseName}}</h1>
 <!-- level,start_date,start_time,duration,trainer,description -->
 <div>
-{{courseName}}
-{{courseInfo['pet_type']}}
-{{courseInfo['level']}}
-{{courseInfo['start_date']}}
-{{courseInfo['pstart_time']}}
-{{courseInfo['duration']}}
-{{courseInfo['trainer']}}
-{{courseInfo['description']}}
+
+<dl class="row">
+    <dt class="col-sm-3">Pet type</dt>
+    <dd class="col-sm-9">{{courseInfo['pet_type']}}</dd>
+
+    <dt class="col-sm-3">level</dt>
+    <dd class="col-sm-9">{{courseInfo['level']}}</dd>
+
+    <dt class="col-sm-3">Start Date</dt>
+    <dd class="col-sm-9">{{courseInfo['start_date']}}</dd>
+
+    <dt class="col-sm-3">Start Time</dt>
+    <dd class="col-sm-9">{{courseInfo['start_time']}}</dd>
+
+    <dt class="col-sm-3">Duration</dt>
+    <dd class="col-sm-9">{{courseInfo['duration']}}</dd>
+
+    <dt class="col-sm-3">Trainer</dt>
+    <dd class="col-sm-9">{{courseInfo['trainer']}}</dd>
+
+    <dt class="col-sm-3">Description</dt>
+    <dd class="col-sm-9">
+      <p>{{courseInfo['description']}}</p>
+    </dd>
 </div>
 {% endblock %}

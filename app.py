@@ -6,7 +6,7 @@ app = Flask(__name__)
 def get_courses():
     with open('courses.csv', 'r') as csvfile:
         data = csv.DictReader(csvfile)
-        courseInfo = {row['name']: {'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration']} for row in data}
+        courseInfo = {row['name']: {'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data}
     return courseInfo
 
 @app.route('/')
