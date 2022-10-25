@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Courses</h1>
 
-<div class="col-12 col-md-6">
+<div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -23,13 +23,9 @@
             <td>{{courseInfo[i]['duration']}}</td>
             <td>{{courseInfo[i]['start_time']}}</td>
             </tr>
-            {% endfor %}
+        {% endfor %}
     </tbody>
     </table>
 </div>
-
-
-    
-
 {% endblock %}
 
