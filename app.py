@@ -23,8 +23,8 @@ get_courses()
 def index():
     
     courseInfo = get_courses()
-    # date = sorted(courseInfo.items(), key = lambda item : datetime.strptime(item["start_date"],"%B %d %Y"))
-    # print(date)
+    date = sorted(courseInfo.items(), key = lambda item : datetime.strptime(item["start_date"],"%B %d %Y"), reverse=True)
+    print(date)
     return render_template('index.html', courseInfo=courseInfo, )
 
 # make a route for the course name and have the individual courses pop up when tapping on a course
