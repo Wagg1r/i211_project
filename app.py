@@ -11,8 +11,10 @@ app = Flask(__name__)
 # ind= 'October 19 2022'
 # res= ind.split(' ')
 # []
+
+COURSE_PATH = app.root_path + '/courses.csv'
 def get_courses():
-    with open('courses.csv', 'r') as csvfile:
+    with open(COURSE_PATH, 'r') as csvfile:
         data = csv.DictReader(csvfile)
         courseInfo = {row['name']: {'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data}
 
