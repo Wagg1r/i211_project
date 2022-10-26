@@ -7,11 +7,6 @@ app = Flask(__name__)
 # make a function that calls in the CSV and make a dictionary of dictionaries
 #         date = sorted(courseInfo, key = lambda item : datetime.strptime(item["start_date"],"%B %d %Y"))
 
-# year = {'January': 1, 'October': 10}
-# ind= 'October 19 2022'
-# res= ind.split(' ')
-# []
-
 COURSE_PATH = app.root_path + '/courses.csv'
 def get_courses():
     with open(COURSE_PATH, 'r') as csvfile:
@@ -25,8 +20,6 @@ get_courses()
 def index():
     
     courseInfo = get_courses()
-    date = sorted(courseInfo.items(), key = lambda item : datetime.strptime(item["start_date"],"%B %d %Y"), reverse=True)
-    print(date)
     return render_template('index.html', courseInfo=courseInfo, )
 
 # make a route for the course name and have the individual courses pop up when tapping on a course
