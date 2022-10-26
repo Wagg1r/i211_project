@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %} Courses {% endblock %}
+{% block content %}
+<h1>Happy Buddy Pet </h1>
+<!-- a striped table with each class -->
+{{date[i]}}
+<div>
+    
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Pet Type</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Length</th>
+            <th scope="col">time</th>
+            <th scope="col">trainer</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for i in courseInfo %}
+            <tr>
+            <td scope="row"> <a href="{{url_for('courses', courseName = i)}}">{{i}}</a></td>
+            <td>{{courseInfo[i]['pet_type']}}</td>
+            <td>{{courseInfo[i]['start_date']}}</td>
+            <td>{{courseInfo[i]['duration']}}</td>
+            <td>{{courseInfo[i]['start_time']}}</td>
+            <td>{{courseInfo[i]['trainer']}}</td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+{% endblock %}
+

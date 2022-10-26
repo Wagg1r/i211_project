@@ -1,6 +1,43 @@
-from flask import Flask
+from flask import Flask, render_template, request, redirect, url_for
+from datetime import datetime
+import csv
 app = Flask(__name__)
 
+# name,pet_type,level,start_date,start_time,duration, trainer, description
+# make a function that calls in the CSV and make a dictionary of dictionaries
+#         date = sorted(courseInfo, key = lambda item : datetime.strptime(item["start_date"],"%B %d %Y"))
+
+# year = {'January': 1, 'October': 10}
+# ind= 'October 19 2022'
+# res= ind.split(' ')
+# []
+def get_courses():
+    with open('courses.csv', 'r') as csvfile:
+        data = csv.DictReader(csvfile)
+        courseInfo = {row['name']: {'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data}
+
+    return courseInfo
+get_courses()
+# make the route for the index page
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    
+    courseInfo = get_courses()
+    date = sorted(courseInfo.items(), key = lambda item : datetime.strptime(item["start_date"],"%B %d %Y"), reverse=True)
+    print(date)
+    return render_template('index.html', courseInfo=courseInfo, )
+
+# make a route for the course name and have the individual courses pop up when tapping on a course
+@app.route('/courses/')
+@app.route('/courses/<courseName>')
+def courses(courseName=None):
+    courseInfo = get_courses()
+    if courseName in courseInfo.keys():
+        course = courseInfo[courseName]
+        return render_template('course.html', courseInfo=course, courseName=courseName)
+    else:
+        return render_template('courses.html', courseInfo=courseInfo)
+
+
+
+

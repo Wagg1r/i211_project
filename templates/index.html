@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}I211 Project 2.1{% endblock %}
+{% block content %}
+<h1>Happy Buddy Pets</h1>
+
+<div class="container">
+<!-- image -->
+  <img src="static/images/logo.jpg" class="img-fluid d-block mx-auto" alt="logo">
+<!-- basic description -->
+<p>
+  Happy buddy pets is a company dedicated to bringing the best pet care and courses to you and your favorite animal. please look at our courses here!
+</p>
+<!-- button that leads to the courses page -->
+<a class="btn btn-dark" href="{{url_for('courses')}}" role="button">Courses</a>
+</div>
+
+{% endblock %}
