@@ -12,21 +12,61 @@ app = Flask(__name__)
         # res= ind.split(' ')
         # []
 
-        
+
+
+        # reading into a dictionaries of dictionaries
+# def get_courseList():
+#     try:
+#         with open(COURSE_PATH, 'r') as csvfile:
+#             data = csv.DictReader(csvfile)
+#             CourseDict = {}
+#             for course in data:
+#                 CourseDict[course['id']] = course
+#     except Exception as e:
+#         print(e)
+#     print(CourseDict)
+
+       
 # make a function that calls in the CSV and make a dictionary of dictionaries
 COURSE_PATH = app.root_path + '/courses.csv'
+COURSE_KEYS = ['id', 'name', 'pet_type', 'level', 'start_date', 'start_time', 'duration', 'trainer','description']
+
+# this is a monstrosity that creates first a Dictionary of Dictionaries (CourseDict) AND ALSO A LIST OF DICTIONARIES!!!! (CourseList)...What i will do with this new power even I do not know... i am a monster... what have i done
+def get_courseList():
+    with open(COURSE_PATH, 'r') as csvfile:
+        data = csv.DictReader(csvfile)
+        CourseDict = {}
+        for course in data:
+          CourseDict[course['id']] = course
+        CourseList = list({'id': row['id'],'name': row['name'],'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data)
+        return CourseList
+        return CourseDict
+get_courseList()
+
+
+# this makes a list of dictionaries got from https://learnpython.com/blog/read-csv-into-list-python/
+def get_courseList():
+    with open(COURSE_PATH, 'r') as csvfile:
+        data = csv.DictReader(csvfile)
+        CourseList = list({'id': row['id'],'name': row['name'],'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data)
+    return CourseList
+get_courseList()
+
+# this makes a dictionary of dictionaries
 def get_courses():
     with open(COURSE_PATH, 'r') as csvfile:
         data = csv.DictReader(csvfile)
-        courseInfo = {row['name']: {'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data}
+        courseInfo = {row['id']: {'name': row['name'],'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data}
     return courseInfo
-get_courses()
+
+
+
 # make the route for the index page
 @app.route('/')
 def index():
     
     courseInfo = get_courses()
-    return render_template('index.html', courseInfo=courseInfo, )
+    return render_template('index.html', courseInfo=courseInfo)
 
 # make a route for the course name and have the individual courses pop up when tapping on a course
 @app.route('/courses/')
@@ -39,6 +79,41 @@ def courses(courseName=None):
     else:
         return render_template('courses.html', courseInfo=courseInfo)
 
+# this takes the completed dictionary from the user and adds it to the cvs file
+def set_course(CourseInfo):
+    try:
+        with open(COURSE_PATH, mode='w', newline='') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=COURSE_KEYS)
+            writer.writeheader()
+            for course in CourseInfo.values():
+                writer.writerow(course)
+    except Exception as err:
+        print(err)
 
 
 
+
+@app.route('/create', methods=['GET','POST'])
+def create_course():
+    course = get_courses()
+    if request.method == 'POST':
+        course = get_courses()
+        new_dict = {}
+        new_dict['id'] = request.form['id']
+        new_dict['name'] = request.form['courseName']
+        new_dict['pet_type'] = request.form['pet_type']
+        new_dict['level'] = request.form['level']
+        new_dict['start_date'] = request.form['start_date']
+        new_dict['start_time'] = request.form['start_time']
+        new_dict['duration'] = request.form['duration']
+        new_dict['trainer'] = request.form['trainer']
+        new_dict['description'] = request.form['description']
+# this is messing up because i am not getting into the nested dictionary it is over riding the top layer of dictionary, i want to be in the nested dictionary
+        course [request.form["id"]] = new_dict
+        set_course(course)
+        # courses[id]=new_dict
+        return redirect(url_for('courses'))
+
+    else:
+        course=get_courses()
+        return render_template('course_form.html',course=course)
