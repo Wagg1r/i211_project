@@ -5,7 +5,6 @@
 
 <!-- level,start_date,start_time,duration,trainer,description -->
 <div>
-  {% for course in courseList %}
   <h1>{{course['name']}}</h1>
     <!-- making a description list alignment so it is nice and neatly presented. it accesses each item individually-->
     <dl class="row">
@@ -31,6 +30,6 @@
         <dd class="col-sm-9"><p>{{course['description']}}</p></dd>
     
       </dl>
-      {% endfor %}
+
 </div>
 {% endblock %}
