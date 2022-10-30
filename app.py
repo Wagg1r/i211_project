@@ -35,9 +35,10 @@ COURSE_KEYS = ['id', 'name', 'pet_type', 'level', 'start_date', 'start_time', 'd
 def get_courseList():
     with open(COURSE_PATH, 'r') as csvfile:
         data = csv.DictReader(csvfile)
-        CourseList = list({'id': row['id'],'name': row['name'],'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data)
-    return CourseList
-
+        courseList = list({'id': row['id'],'name': row['name'],'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data)
+    # print(courseList)
+    return courseList
+    
 
 # this makes a dictionary of dictionaries
 # def get_courses():
@@ -64,10 +65,12 @@ def courses():
 @app.route('/courses/<courseName>')
 def course(courseName=None):
     courseList = get_courseList()
-    if courseName in courseList.keys():
-        strID = str(courseName)
-        return render_template('course.html', course=courseName)
-    
+    # print(courseList)
+    courseName=int(courseName)
+    course = courseList[courseName] #makes coursename
+    strID = str(courseName)
+    return render_template('course.html', course=course, courseName=courseName)
+
 
 # this takes the completed dictionary from the user and adds it to the cvs file i think this is where the error is because it is not appending to the list
 def set_course(CourseInfo):
