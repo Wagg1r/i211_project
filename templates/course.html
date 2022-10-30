@@ -5,30 +5,32 @@
 
 <!-- level,start_date,start_time,duration,trainer,description -->
 <div>
-  {% for i in courseList %}
-  <h1>{{courseName}}</h1>
+  {% for course in courseList %}
+  <h1>{{course['name']}}</h1>
     <!-- making a description list alignment so it is nice and neatly presented. it accesses each item individually-->
-<dl class="row">
-    <dt class="col-sm-3">Pet type:</dt>
-    <dd class="col-sm-9">{{course['pet_type']}}</dd>
+    <dl class="row">
+        <dt class="col-sm-3">Pet type:</dt>
+        <dd class="col-sm-9">{{course['pet_type']}}</dd>
 
-    <dt class="col-sm-3">Level:</dt>
-    <dd class="col-sm-9">{{course['level']}}</dd>
+        <dt class="col-sm-3">Level:</dt>
+        <dd class="col-sm-9">{{course['level']}}</dd>
 
-    <dt class="col-sm-3">Start Date:</dt>
-    <dd class="col-sm-9">{{course['start_date']}}</dd>
+        <dt class="col-sm-3">Start Date:</dt>
+        <dd class="col-sm-9">{{course['start_date']}}</dd>
 
-    <dt class="col-sm-3">Start Time:</dt>
-    <dd class="col-sm-9">{{course['start_time']}}</dd>
+        <dt class="col-sm-3">Start Time:</dt>
+        <dd class="col-sm-9">{{course['start_time']}}</dd>
 
-    <dt class="col-sm-3">Duration:</dt>
-    <dd class="col-sm-9">{{course['duration']}}</dd>
+        <dt class="col-sm-3">Duration:</dt>
+        <dd class="col-sm-9">{{course['duration']}}</dd>
 
-    <dt class="col-sm-3">Trainer:</dt>
-    <dd class="col-sm-9">{{course['trainer']}}</dd>
+        <dt class="col-sm-3">Trainer:</dt>
+        <dd class="col-sm-9">{{course['trainer']}}</dd>
 
-    <dt class="col-sm-3">Description:</dt>
-    <dd class="col-sm-9"><p>{{course['description']}}</p></dd>
-    </dl>
+        <dt class="col-sm-3">Description:</dt>
+        <dd class="col-sm-9"><p>{{course['description']}}</p></dd>
+    
+      </dl>
+      {% endfor %}
 </div>
 {% endblock %}

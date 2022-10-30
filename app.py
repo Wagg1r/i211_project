@@ -65,11 +65,11 @@ def courses():
 @app.route('/courses/<courseName>')
 def course(courseName=None):
     courseList = get_courseList()
-    # print(courseList)
+
     courseName=int(courseName)
     course = courseList[courseName] #makes coursename
     strID = str(courseName)
-    return render_template('course.html', course=course, courseName=courseName)
+    return render_template('course.html', course=course, courseName=courseName, courseList=courseList)
 
 
 # this takes the completed dictionary from the user and adds it to the cvs file i think this is where the error is because it is not appending to the list

@@ -20,7 +20,7 @@
         <tbody>
             {% for i in courseList %}
             <tr>
-                <td scope="row"> <a href="{{url_for('courses', courseName=courseList.index[i])}}">{{i['name']}}</a></td>
+                <td scope="row"> <a href="{{url_for('course', courseName=courseList.index(i))}}">{{i['name']}}</a></td>
                 <td>{{i['start_date']}}</td>
                 <td>{{i['start_date']}}</td>
                 <td>{{i['duration']}}</td>
