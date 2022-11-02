@@ -51,7 +51,7 @@ def create_course():
     if request.method == 'POST':
         course = get_courseList()
         new_dict = {}
-        new_dict['name'] = request.form['courseName']
+        new_dict['name'] = request.form['name']
         new_dict['pet_type'] = request.form['pet_type']
         new_dict['level'] = request.form['level']
         new_dict['start_date'] = request.form['start_date']
@@ -72,7 +72,7 @@ def edit(courseID=None):
     courseList = get_courseList()
     if request.method == 'POST':
         new_dict = {}
-        new_dict['name'] = request.form['courseName']
+        new_dict['name'] = request.form['name']
         new_dict['pet_type'] = request.form['pet_type']
         new_dict['level'] = request.form['level']
         new_dict['start_date'] = request.form['start_date']

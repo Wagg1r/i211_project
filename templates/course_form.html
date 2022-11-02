@@ -31,17 +31,28 @@
 
 <div>
     <label for="courseName">Course Name:</label>
+    <input type="text" id="name" name="name" value="{{new_name}}">
+    <br>
     <label for="pet_type">Pet type:</label>
-    <input type="text" id="pet_type" name="pet_type" value="{{new_pet_type}}">
+        <select type="form-select mb-3" id="pet_type" name="pet_type" value="{{new_pet_type}}">
+            <option value="{{new_pet_type}}">Cat</option>
+            <option value="{{new_pet_type}}">Dog</option>
+            <option value="{{new_pet_type}}">Hampster</option>
+            <option value="{{new_pet_type}}">Ferret</option>
+        </select>
         <br>
     <label for="level">level:</label>
-    <input type="text" id="level" name="level" value="{{new_level}}">
+    <select type="form-select mb-3" id="level" name="level" value="{{new_level}}">
+        <option value="{{new_level}}">Beginner</option>
+        <option value="{{new_level}}">Intermediate</option>
+        <option value="{{new_level}}">Advanced</option>
+    </select>
         <br>
     <label for="start_time">Start time:</label>
-    <input type="text" id="start_time" name="start_time" value="{{new_start_time}}">
+    <input type="time" id="start_time" name="start_time" value="{{new_start_time}}">
         <br>
     <label for="start_date">Start date:</label>
-    <input type="text" id="start_date" name="start_date" value="{{new_start_date}}">
+    <input type="date" id="start_date" name="start_date" value="{{new_start_date}}">
         <br>
     <label for="duration">Duration:</label>
     <input type="text" id="duration" name="duration" value="{{new_duration}}">
