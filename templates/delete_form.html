@@ -5,7 +5,8 @@
 
 <!-- level,start_date,start_time,duration,trainer,description -->
 <div>
-  <h1>{{course['name']}}</h1>
+  <h1 style="color:red;">Delete This Training Course? </h1>
+  <h2>{{course['name']}}</h2>
     <!-- making a description list alignment so it is nice and neatly presented. it accesses each item individually-->
     <dl class="row">
         <dt class="col-sm-3">Pet type:</dt>
@@ -31,8 +32,8 @@
     
       </dl>
 
-      <button type="button" class="btn btn-primary"> <a href="{{url_for('course', courseID=courseID)}}" style="color: white"> Return to course </a></button>
-      <button type="button" class="btn btn-primary"> <a href="{{url_for('delete', courseID=courseID, delete='1')}}" style="color: white"> confirm </a></button>
+      <button type="button" class="btn btn-dark"> <a href="{{url_for('course', courseID=courseID)}}" style="color: white"> Return to course </a></button>
+      <button type="button" class="btn btn-danger"> <a href="{{url_for('delete', courseID=courseID, delete='1')}}" style="color: white"> Confirm Delete</a></button>
 
     </div>
 {% endblock %}
