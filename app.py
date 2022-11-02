@@ -42,7 +42,7 @@ def course(courseID=None):
     courseList = get_courseList()
     courseID=int(courseID)
     course = courseList[courseID] #makes coursename
-    return render_template('course.html', course=course)
+    return render_template('course.html', course=course, courseID=courseID)
 
 
 @app.route('/courses/create', methods=['GET','POST'])
