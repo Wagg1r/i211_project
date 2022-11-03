@@ -1,10 +1,10 @@
 name,pet_type,level,start_date,start_time,duration,trainer,description
-Morning Obedience,Cat,Beginner,2022-11-03,10:23,45, Emily, Obedience training
+Morning Obedience,Cat,Beginner,2022-11-03,10:23,90,Emily, Obedience training
 Glamour Photography for your Kitty,Cat,Beginner,2022-11-03,09:38,45,Sarah,photos for your cat
-Ferret Bueller's Day Off,Cat,Beginner,2022-11-03,00:26,45, Terry,training for ferrets
-Mr. Fluffies playday,Cat,beginner,2022-10-31,23:36,8 hours,Steven,older dog sessions
-Tail Chasers,Cat,Beginner,2022-10-19,12:36,45,Ron,
+Ferret Bueller's Day Off,Cat,Beginner,2022-11-03,00:26,45,Terry,training for ferrets
+Mr. Fluffies playday,Ferret,Beginner,2022-10-31,23:36,45,Steven,older dog sessions
+Tail Chasers,Cat,Beginner,2022-10-19,12:36,45,Ron,Ron doing Ron activities
 tom,Ferret,Beginner,2022-11-01,12:33,45,meg,test
-Thomas Waggoner,Dog,Advanced,2022-11-03,05:38,60,test1,test1
+Paulies cracker,Parrot,Beginner,2022-11-03,05:38,45,test1,test1
 citty kitty,Cat,Beginner,2022-11-02,13:00,45,meg,hellos 
-Ferret festival,Ferret,Advanced,3000-01-01,12:17,45,Mary,a whole lot of stuff going on 
+Ferret festival,Ferret,Beginner,3000-01-01,12:17,45,Mary,a whole lot of stuff going on 
