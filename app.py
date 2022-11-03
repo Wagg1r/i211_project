@@ -48,6 +48,7 @@ def course(courseID=None):
 @app.route('/courses/create', methods=['GET','POST'])
 def create_course():
     course = get_courseList()
+    courseID = None
     if request.method == 'POST':
         course = get_courseList()
         new_dict = {}
@@ -65,7 +66,7 @@ def create_course():
         return redirect(url_for('courses'))
 
     else:
-        return render_template('course_form.html')
+        return render_template('course_form.html', courseID = courseID)
 
 @app.route('/courses/<courseID>/edit', methods=['GET','POST'])
 def edit(courseID=None):
@@ -86,6 +87,7 @@ def edit(courseID=None):
         return redirect(url_for('courses'))
 
     else:
+
         if courseID:
             courseList = get_courseList()
             courseID=int(courseID)
@@ -104,6 +106,8 @@ def delete(courseID=None):
         if delete != None:
             courseList.pop(int(courseID))
             set_course(courseList)
+            return redirect(url_for('courses'))
+
         else:
             return render_template('delete_form.html',course=course, courseID=courseID)
     else:

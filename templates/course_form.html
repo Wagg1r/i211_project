@@ -3,7 +3,7 @@
 {% block content %}
 
 
-{% if courseID %}
+{% if courseID != None %}
 
     {% set new_name = course['name'] %}
     {% set new_pet_type = course['pet_type'] %}
@@ -14,6 +14,7 @@
     {% set new_length = course['length'] %}
     {% set new_trainer = course['trainer'] %}
     {% set new_description = course['description'] %}
+
 
 {% else %}
 
@@ -29,6 +30,7 @@
     
 {% endif %}
 
+
 <form method="POST" name="add_info">
 
 <div class="form-group row">
@@ -41,13 +43,13 @@
     <div class="form-group row">
         <label for="pet_type" class="col-sm-3 col-form-label">Pet type:</label>
         <div class="col-9">
-            <select type="form-select mb-3" id="pet_type" name="pet_type" value="{{new_pet_type}}">
+            <select type="form-select mb-3" id="pet_type" name="pet_type" value="{{new_pet_type}}" placeholder="{{new_pet_type}}">
                
-                <option value="Cat">Cat</option>
-                <option value="Dog">Dog</option>
-                <option value="Hampster">Hampster</option>
-                <option value="Ferret">Ferret</option>
-                <option value="Ferret">Parrot</option>
+                <option value="Cat"{% if new_pet_type == "Cat" %} selected {% endif %}>Cat</option>
+                <option value="Dog" {% if new_pet_type == "Dog" %} selected {% endif %}>Dog</option>
+                <option value="Hampster"{% if new_pet_type == "Hampster" %} selected {% endif %}>Hampster</option>
+                <option value="Ferret" {% if new_pet_type == "Ferret" %} selected {% endif %}>Ferret</option>
+                <option value="Parrot" {% if new_pet_type == "Parrot" %} selected {% endif %}>Parrot</option>
             </select>
         </div>
         </div>
@@ -79,10 +81,10 @@
     <div class="form-group row">
         <label for="duration" class="col-sm-3 col-form-label">Duration:</label>
         <div class="col-9">
-            <select type="form-select mb-3" id="duration" name="duration" value="{{new_duration}}">
-                <option value="45">45</option>
-                <option value="60">60</option>
-                <option value="90">90</option> 
+            <select type="form-select mb-3" id="duration" name="duration" value="{{new_duration}}" placeholder="{{new_duration}}">
+                <option value="45">45 minutes</option>
+                <option value="60">60 minutes</option>
+                <option value="90">90 minutes</option> 
             </select>
         </div>
     </div>
@@ -91,9 +93,9 @@
         <label for="duration" class="col-sm-3 col-form-label">level:</label>
         <div class="col-9">
             <select type="form-select mb-3" id="duration" name="duration" value="{{new_duration}}">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option> 
+                <option value="4 weeks">4 weeks</option>
+                <option value="6 weeks">6 weeks</option>
+                <option value="8 weeks">8 weeks</option> 
             </select>
             </div>
     </div>
@@ -109,7 +111,7 @@
             
             <label for="description" class="col-sm-3 col-form-label">description:</label>
             <div class="col-9">
-            <textarea type="text" id="description" name="description" value="{{new_description}}"></textarea>
+            <textarea type="text" id="description" name="description" value="{{new_description}}" placeholder="{{new_description}}">{{new_description}}</textarea>
         </div>
         </div>
 
