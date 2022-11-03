@@ -23,7 +23,7 @@
                 <td scope="row"> <a href="{{url_for('course', courseID=courseList.index(course))}}">{{course['name']}}</a></td>
                 <td>{{course['pet_type']}}</td>
                 <td>{{course['start_date']}}</td>
-                <td>{{course['duration']}}</td>
+                <td>{{course['duration']}} minutes</td>
                 <td>{{course['start_time']}}</td>
                 <td>{{course['trainer']}}</td>
 
@@ -31,6 +31,8 @@
         {% endfor %}
     </tbody>
     </table>
+    <button type="button" class="btn btn-dark"> <a href="{{url_for('create_course')}}" style="color: white"> Add a course </a></button>
+
 </div>
 {% endblock %}
 
