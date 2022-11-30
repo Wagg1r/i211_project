@@ -3,7 +3,7 @@
 {% block content %}
 
 
-{% if courseID != None %}
+{% if course_id != None %}
 
     {% set new_name = course['name'] %}
     {% set new_pet_type = course['pet_type'] %}
@@ -58,23 +58,23 @@
             <label for="level" class="col-sm-3 col-form-label">level:</label>
             <div class="col-9">
             <select type="form-select mb-3" id="level" name="level" value="{{new_level}}">
-                <option value="Beginner" {% if new_pet_type == "Beginner" %} selected {% endif %}>Beginner</option>
-                <option value="Intermediate"{% if new_pet_type == "Intermediate" %} selected {% endif %}>Intermediate</option>
-                <option value="Advanced"{% if new_pet_type == "Advanced" %} selected {% endif %}>Advanced</option>
+                <option value="Beginner" {% if new_level == "Beginner" %} selected {% endif %}>Beginner</option>
+                <option value="Intermediate"{% if new_level == "Intermediate" %} selected {% endif %}>Intermediate</option>
+                <option value="Advanced"{% if new_level == "Advanced" %} selected {% endif %}>Advanced</option>
             </select>
             </div>
         </div>
         <div class="form-group row">
         <label for="start_time" class="col-sm-3 col-form-label">Start time:</label>
         <div class="col-9">
-            <input type="time" id="start_time" name="start_time" value="{{new_start_time}}">
+            <input type="time" id="start_time" name="start_time" value="{{new_start_time}}" required>
             </div>
             </div>
 
             <div class="form-group row">
         <label for="start_date" class="col-sm-3 col-form-label">Start date:</label>
         <div class="col-9">
-        <input type="date" id="start_date" name="start_date" value="{{new_start_date}}">
+        <input type="date" id="start_date" name="start_date" value="{{new_start_date}}" required>
     </div>
     </div>
     
@@ -82,20 +82,20 @@
         <label for="duration" class="col-sm-3 col-form-label">Duration:</label>
         <div class="col-9">
             <select type="form-select mb-3" id="duration" name="duration" value="{{new_duration}}" placeholder="{{new_duration}}">
-                <option value="45"{% if new_pet_type == "45" %} selected {% endif %}>45 minutes</option>
-                <option value="60"{% if new_pet_type == "60" %} selected {% endif %}>60 minutes</option>
-                <option value="90"{% if new_pet_type == "90" %} selected {% endif %}>90 minutes</option> 
+                <option value="45"{% if new_duration == "45" %} selected {% endif %}>45 minutes</option>
+                <option value="60"{% if new_duration == "60" %} selected {% endif %}>60 minutes</option>
+                <option value="90"{% if new_duration == "90" %} selected {% endif %}>90 minutes</option> 
             </select>
         </div>
     </div>
 
     <div class="form-group row">
-        <label for="duration" class="col-sm-3 col-form-label">Length:</label>
+        <label for="length" class="col-sm-3 col-form-label">Length:</label>
         <div class="col-9">
-            <select type="form-select mb-3" id="duration" name="duration" value="{{new_duration}}">
-                <option value="4 weeks"{% if new_pet_type == "4 weeks" %} selected {% endif %}>4 weeks</option>
-                <option value="6 weeks"{% if new_pet_type == "6 weeks" %} selected {% endif %}>6 weeks</option>
-                <option value="8 weeks"{% if new_pet_type == "8 weeks" %} selected {% endif %}>8 weeks</option> 
+            <select type="form-select mb-3" id="length" name="length" value="{{new_length}}">
+                <option value="4"{% if new_length == "4" %} selected {% endif %}>4 weeks</option>
+                <option value="6"{% if new_length == "6" %} selected {% endif %}>6 weeks</option>
+                <option value="8"{% if new_length == "8" %} selected {% endif %}>8 weeks</option> 
             </select>
             </div>
     </div>

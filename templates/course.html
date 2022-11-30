@@ -2,39 +2,38 @@
 {% block title %} Course {% endblock %}
 {% block content %}
 
-
 <!-- level,start_date,start_time,duration,trainer,description -->
 <div>
   <h1>{{course['name']}}</h1>
     <!-- making a description list alignment so it is nice and neatly presented. it accesses each item individually-->
     <dl class="row">
         <dt class="col-sm-3">Pet type:</dt>
-        <dd class="col-sm-9">{{course['pet_type']}}</dd>
+        <dd class="col-sm-9">{{course[0]['pet_type']}}</dd>
 
         <dt class="col-sm-3">Level:</dt>
-        <dd class="col-sm-9">{{course['level']}}</dd>
+        <dd class="col-sm-9">{{course[0]['level']}}</dd>
 
         <dt class="col-sm-3">Start Date:</dt>
-        <dd class="col-sm-9">{{course['start_date']}}</dd>
+        <dd class="col-sm-9">{{course[0]['start_date']}}</dd>
 
         <dt class="col-sm-3">Start Time:</dt>
-        <dd class="col-sm-9">{{course['start_time']}}</dd>
+        <dd class="col-sm-9">{{course[0]['start_time']}}</dd>
 
         <dt class="col-sm-3">Duration:</dt>
-        <dd class="col-sm-9">{{course['duration']}} minutes</dd>
+        <dd class="col-sm-9">{{course[0]['duration']}} minutes</dd>
 
         <dt class="col-sm-3">Length:</dt>
-        <dd class="col-sm-9">{{course['length']}} minutes</dd>
+        <dd class="col-sm-9">{{course[0]['length']}} minutes</dd>
 
         <dt class="col-sm-3">Trainer:</dt>
-        <dd class="col-sm-9">{{course['trainer']}}</dd>
+        <dd class="col-sm-9">{{course[0]['trainer']}}</dd>
 
         <dt class="col-sm-3">Description:</dt>
-        <dd class="col-sm-9"><p>{{course['description']}}</p></dd>
+        <dd class="col-sm-9"><p>{{course[0]['description']}}</p></dd>
     
       </dl>
 </div>
-      <button type="button" class="btn btn-dark"> <a href="{{url_for('edit', courseID=courseID)}}" style="color: white"> Edit {{course['name']}} </a></button>
-      <button type="button" class="btn btn-dark"> <a href="{{url_for('delete', courseID=courseID)}}" style="color: white"> Delete {{course['name']}} </a> </button>
+      <button type="button" class="btn btn-dark"> <a href="{{url_for('edit', course_id=course_id)}}" style="color: white"> Edit {{course['name']}} </a></button>
+      <button type="button" class="btn btn-dark"> <a href="{{url_for('delete', course_id=course_id)}}" style="color: white"> Delete {{course['name']}} </a> </button>
     
 {% endblock %}
