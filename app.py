@@ -49,6 +49,7 @@ def courses():
 @app.route('/courses/<course_id>')
 def course(course_id=None):
     course_id=int(course_id)
+    
     course =database.get_course(course_id) #makes coursename
     return render_template('course.html', course=course, course_id=course_id)
 
