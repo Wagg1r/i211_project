@@ -53,7 +53,7 @@
         <td>{{attendee['email']}}</td>
         <td>{{attendee['dob']}}</td>
         <td><button type="button" class="btn btn-dark"> <a href="{{url_for('create_attendee', course_id=course_id)}}" style="color: white"> add attendee </a></button></td>
-        <td><button type="button" class="btn btn-dark"> <a href="{{url_for('edit_attendee', course_id=course_id, attendee_id = attendee['attendee_id'])}}" style="color: white"> edit attendee </a></button></td>
+        <td><button type="button" class="btn btn-dark"> <a href="{{url_for('edit_attendee', course_id=course_id, attendee_id = attendee['attendee_id'], attendee=attendee)}}" style="color: white"> edit attendee </a></button></td>
       </tr>
       {% endfor %}
     </tbody>

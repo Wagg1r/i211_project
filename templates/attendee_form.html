@@ -5,11 +5,11 @@
 
 {% if attendee_id  %}
 
-    {% set new_f_name = attendee[0]['f_name'] %}
-    {% set new_l_name = attendee[0]['l_name'] %}
-    {% set new_phone_num = attendee[0]['phone_num'] %}
-    {% set new_email = attendee[0]['email'] %}
-    {% set new_dob = attendee[0]['dob'] %}
+    {% set new_f_name = attendee['f_name'] %}
+    {% set new_l_name = attendee['l_name'] %}
+    {% set new_phone_num = attendee['phone_num'] %}
+    {% set new_email = attendee['email'] %}
+    {% set new_dob = attendee['dob'] %}
 
 {% else %}
     <h1>{{course_id}}</h1>
@@ -22,9 +22,7 @@
      
 {% endif %}
 
-{{attendee_id}}??
 
-{{attendee}}!!
 <form method="POST" name="add_info">
 
     <div class="form-group row">
@@ -51,14 +49,14 @@
     <div class="form-group row">
         <label for="email" class="col-sm-3 col-form-label">email:</label>
         <div class="col-9">
-            <input type="text" id="email" name="email" value="{{new_email}}" required>
+            <input type="email" id="email" name="email" value="{{new_email}}" required>
         </div>
     </div>
 
     <div class="form-group row">
         <label for="dob" class="col-sm-3 col-form-label">Date of Birth:</label>
         <div class="col-9">
-            <input type="text" id="dob" name="dob" value="{{new_dob}}" required>
+            <input type="date" id="dob" name="dob" value="{{new_dob}}" required>
         </div>
     </div>
 
