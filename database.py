@@ -68,6 +68,16 @@ def delete_course(course_id):
             cursor.execute(sql,course_id)
         conn.commit()
 
+def get_attendees(course_id):
+    #Takes a course_id and returns a list of the dictionaries of all attendees for that course
+    sql = "select * from attendee where course_id = %s"
+    conn = get_connection()
+    with conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql, (course_id))
+            return cursor.fetchall()
+
+
 def add_attendee(course_id, attendee):
     #Given a course_id and attendee info, adds a new attendee to the attendee table
     sql = "INSERT INTO attendee (course_id,f_name, l_name, phone_num, email, dob) VALUES (%s,%s,%s,%s,%s,%s)"
@@ -77,7 +87,7 @@ def add_attendee(course_id, attendee):
             cursor.execute(sql,(course_id,attendee["f_name"], attendee["l_name"], attendee["phone_num"], attendee["email"], attendee["dob"]))
         conn.commit()
 
-def edit_attendee(attendee_id, attendee):
+def edit_attendee(attendee_id, attendee): 
     #Given an attendee__id and attendee info, updates the data for the attendee with the given attendee_id the attendee table
     sql = "UPDATE attendee SET course_id=%s,f_name=%s, l_name=%s, phone_num=%s, email=%s, dob=%s WHERE attendee_id =%s"
     conn = get_connection()

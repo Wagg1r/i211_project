@@ -44,7 +44,6 @@
         <label for="pet_type" class="col-sm-3 col-form-label">Pet type:</label>
         <div class="col-9">
             <select type="form-select mb-3" id="pet_type" name="pet_type" value="{{new_pet_type}}" placeholder="{{new_pet_type}}">
-               
                 <option value="Cat"{% if new_pet_type == "Cat" %} selected {% endif %}>Cat</option>
                 <option value="Dog" {% if new_pet_type == "Dog" %} selected {% endif %}>Dog</option>
                 <option value="Hampster"{% if new_pet_type == "Hampster" %} selected {% endif %}>Hampster</option>

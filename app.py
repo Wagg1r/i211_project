@@ -14,14 +14,6 @@ import database
 COURSE_PATH = app.root_path + '/courses.csv'
 COURSE_KEYS = ['name', 'pet_type', 'level', 'start_date', 'start_time', 'duration', 'length', 'trainer','description']
 
-# this makes a list of dictionaries got from https://learnpython.com/blog/read-csv-into-list-python/
-# def get_courseList():
-#     with open(COURSE_PATH, 'r') as csvfile:
-#         data = csv.DictReader(csvfile)
-#         courseList = [{'name': row['name'],'pet_type': row['pet_type'], 'level': row['level'], 'start_date': row['start_date'], 'start_time': row['start_time'], 'duration': row['duration'], 'trainer': row['trainer'], 'description': row['description']} for row in data]
-#     return courseList
-
-
 
 # this takes the completed dictionary from the user and adds it to the cvs file i think this is where the error is because it is not appending to the list
 def set_course(courseList):
@@ -49,9 +41,9 @@ def courses():
 @app.route('/courses/<course_id>')
 def course(course_id=None):
     course_id=int(course_id)
-    
+    attendee = database.get_attendees(course_id)
     course =database.get_course(course_id) #makes coursename
-    return render_template('course.html', course=course, course_id=course_id)
+    return render_template('course.html', course=course, course_id=course_id, attendee = attendee)
 
 @app.route('/courses/create', methods=['GET','POST'])
 def create_course():
@@ -122,3 +114,49 @@ def delete(course_id=None):
             return render_template('delete_form.html',course=course, course_id=course_id)
     else:
         return redirect(url_for('courses'))
+
+# creates a brand new attendee
+@app.route('/attendee/create', methods=['GET','POST'])
+def create_attendee(course_id=1):
+    # get all the attendees
+    course_id=int(course_id)
+    course = database.get_attendees(course_id)
+    course = {}
+    # if they post something grab all the info
+    if request.method == 'POST':
+        course = database.get_attendees(course_id)
+        new_dict = {}
+        new_dict['f_name'] = html.escape(request.form['f_name'])
+        new_dict['l_name'] = html.escape(request.form['l_name'])
+        new_dict['phone_num'] = html.escape(request.form['phone_num'])
+        new_dict['email'] = html.escape(request.form['email'])
+        new_dict['dob'] = html.escape(request.form['dob'])
+        # add the new attendee
+        database.add_attendee(course_id, new_dict)
+        return redirect(url_for('course'))
+    else:
+        return render_template('attendee_form.html', course = course)
+
+
+@app.route('/attendee/<attendee_id>/edit_attendee', methods=['GET','POST'])
+def edit_attendee(attendee_id=1):
+    # get all the attendees
+    attendee_id=int(attendee_id)
+    attendee = database.get_attendees(attendee_id)
+    course = {}
+    # if they post something grab all the info
+    if request.method == 'POST':
+        attendee = database.get_attendees(attendee_id)
+        new_dict = {}
+        new_dict['f_name'] = html.escape(request.form['f_name'])
+        new_dict['l_name'] = html.escape(request.form['l_name'])
+        new_dict['phone_num'] = html.escape(request.form['phone_num'])
+        new_dict['email'] = html.escape(request.form['email'])
+        new_dict['dob'] = html.escape(request.form['dob'])
+        # add the new attendee
+        attendee_id[int(attendee_id)] = new_dict
+        database.edit_attendee(new_dict)
+        return redirect(url_for('courses'))
+    else:
+        return render_template('attendee_form.html', course = course, attendee_id = attendee_id, attendee=attendee)
+

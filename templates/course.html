@@ -23,7 +23,7 @@
         <dd class="col-sm-9">{{course[0]['duration']}} minutes</dd>
 
         <dt class="col-sm-3">Length:</dt>
-        <dd class="col-sm-9">{{course[0]['length']}} minutes</dd>
+        <dd class="col-sm-9">{{course[0]['length']}} weeks</dd>
 
         <dt class="col-sm-3">Trainer:</dt>
         <dd class="col-sm-9">{{course[0]['trainer']}}</dd>
@@ -33,7 +33,35 @@
     
       </dl>
 </div>
-      <button type="button" class="btn btn-dark"> <a href="{{url_for('edit', course_id=course_id)}}" style="color: white"> Edit {{course['name']}} </a></button>
-      <button type="button" class="btn btn-dark"> <a href="{{url_for('delete', course_id=course_id)}}" style="color: white"> Delete {{course['name']}} </a> </button>
+<div>
+  <table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>phone</th>
+        <th>email</th>
+        <th>dob</th>
+      </tr>
+      
+    </thead>
+    <tbody>
+      {% for attendee in attendee %}
+      <tr>
+        <td>{{course_id}}</td>
+        <td>{{attendee['f_name']}} {{attendee['l_name']}}</td>
+        <td>{{attendee['phone_num']}}</td>
+        <td>{{attendee['email']}}</td>
+        <td>{{attendee['dob']}}</td>
+        <td><button type="button" class="btn btn-dark"> <a href="{{url_for('create_attendee', course_id=course_id)}}" style="color: white"> add attendee </a></button></td>
+        <td><button type="button" class="btn btn-dark"> <a href="{{url_for('edit_attendee', course_id=course_id, attendee_id = attendee['attendee_id'])}}" style="color: white"> edit attendee </a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<button type="button" class="btn btn-dark"> <a href="{{url_for('create_attendee', course_id=course_id)}}" style="color: white"> add attendee </a></button>
+
+      <button type="button" class="btn btn-dark"> <a href="{{url_for('edit', course_id=course_id)}}" style="color: white"> Edit {{course[0]['name']}} </a></button>
+      <button type="button" class="btn btn-dark"> <a href="{{url_for('delete', course_id=course_id)}}" style="color: white"> Delete {{course[0]['name']}} </a> </button>
     
 {% endblock %}
