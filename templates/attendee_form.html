@@ -4,15 +4,15 @@
 
 
 {% if attendee_id  %}
-
-    {% set new_f_name = attendee['f_name'] %}
-    {% set new_l_name = attendee['l_name'] %}
-    {% set new_phone_num = attendee['phone_num'] %}
-    {% set new_email = attendee['email'] %}
-    {% set new_dob = attendee['dob'] %}
+<h1>{{course_id}}</h1>
+    {% set new_f_name = attendee[0]['f_name'] %}
+    {% set new_l_name = attendee[0]['l_name'] %}
+    {% set new_phone_num = attendee[0]['phone_num'] %}
+    {% set new_email = attendee[0]['email'] %}
+    {% set new_dob = attendee[0]['dob'] %}
 
 {% else %}
-    <h1>{{course_id}}</h1>
+    <h1>{{course_id}}///</h1>
 
     {% set new_f_name ='' %}
     {% set new_l_name ='' %}
@@ -21,7 +21,6 @@
     {% set new_dob = '' %}
      
 {% endif %}
-
 
 <form method="POST" name="add_info">
 
