@@ -33,6 +33,7 @@
     
       </dl>
 </div>
+<!-- create a table to display all the attendee information -->
 <div>
   <table class="table table-striped mt-5">
     <thead>
@@ -47,11 +48,11 @@
     <tbody>
       {% for attendee in attendee %}
       <tr>
-        <td>{{course_id}}</td>
         <td>{{attendee['f_name']}} {{attendee['l_name']}}</td>
         <td>{{attendee['phone_num']}}</td>
         <td>{{attendee['email']}}</td>
         <td>{{attendee['dob']}}</td>
+        <!-- provide options for the user to delete and edit -->
         <td><button type="button" class="btn btn-danger"> <a href="{{url_for('delete_attendee', attendee_id = attendee['attendee_id'], course_id=course_id, delete=1)}}" style="color: white"> delete attendee </a></button></td>
         <td><button type="button" class="btn btn-dark"> <a href="{{url_for('edit_attendee', course_id=course_id, attendee_id = attendee['attendee_id'], attendee=attendee)}}" style="color: white"> edit attendee </a></button></td>
       </tr>
@@ -59,6 +60,7 @@
     </tbody>
   </table>
 </div>
+<!-- the user can add the attendee/ edit or add the courses -->
 <button type="button" class="btn btn-dark"> <a href="{{url_for('create_attendee', course_id=course_id)}}" style="color: white"> add attendee </a></button>
 
       <button type="button" class="btn btn-dark"> <a href="{{url_for('edit', course_id=course_id)}}" style="color: white"> Edit {{course[0]['name']}} </a></button>

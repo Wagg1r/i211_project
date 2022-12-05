@@ -71,7 +71,7 @@ def create_course():
 
 @app.route('/courses/<course_id>/edit', methods=['GET','POST'])
 def edit(course_id=None):
-    courseList = database.get_courses()
+
     if request.method == 'POST':
         new_dict = {}
         new_dict['name'] = html.escape(request.form['name'])
@@ -83,17 +83,12 @@ def edit(course_id=None):
         new_dict['length'] = request.form['length']
         new_dict['trainer'] = html.escape(request.form['trainer'])
         new_dict['description'] = html.escape(request.form['description'])
-########################### do i need -1?
-        courseList[int(course_id)-1] = new_dict
+    
         database.update_course(course_id, new_dict)
         return redirect(url_for('courses'))
 
     else:
         if course_id:
-            courseList = database.get_courses()
-            course_id=(int(course_id)-1)
-            ####################################### i shouldn't have -1 probably?
-            course = courseList[int(course_id)]
             return render_template('course_form.html',course=course, course_id=course_id)
         else:
             return render_template('course_form.html', course_id=course_id ,course=course)
@@ -101,13 +96,15 @@ def edit(course_id=None):
 
 @app.route('/courses/<course_id>/delete')
 def delete(course_id=None):
-    courseList=database.get_courses()
-    if courseList:
-        course = courseList[int(course_id)-1]
+    course=database.get_course(course_id)
+    if course:
         delete=request.args.get('delete',None)
         if delete != None:
-            courseList.pop(int(course_id)-1)
+            # deletes all the attendees from that class first
+            database.delete_attendees(course_id)
+            # deletes the class from the record
             database.delete_course(course_id)
+            # takes you back to the courses page
             return redirect(url_for('courses'))
 
         else:
@@ -118,25 +115,27 @@ def delete(course_id=None):
 # creates a brand new attendee
 @app.route('/courses/<course_id>/attendees/add', methods=['GET','POST'])
 def create_attendee(course_id=None):
+    # get all the course info for that specific course
     course = database.get_course(course_id)
-    # if they post something grab all the info
+    # if they post something grab all the info they have given
     if request.method == 'POST':
+        # make an empty dictionary to hold all the variables
         new_dict = {}
         new_dict['f_name'] = html.escape(request.form['f_name'])
         new_dict['l_name'] = html.escape(request.form['l_name'])
         new_dict['phone_num'] = html.escape(request.form['phone_num'])
         new_dict['email'] = html.escape(request.form['email'])
         new_dict['dob'] = html.escape(request.form['dob'])
-        # add the new attendee
+        # add the new attendee with the info we have been given.
         database.add_attendee(course_id, new_dict)
-        return redirect(url_for('courses'))
+        return redirect(url_for('course', course_id = course_id))
     else:
         return render_template('attendee_form.html', course_id = course_id, course = course)
 
 
 @app.route('/courses/<course_id>/attendees/<attendee_id>/edit', methods=['GET','POST'])
 def edit_attendee(attendee_id=None,course_id=None):
-    # get all the attendees
+    # get the attendee you want
     attendee_id=int(attendee_id)
     attendee = database.get_attendee(attendee_id)
     course = database.get_course(course_id)
@@ -150,16 +149,20 @@ def edit_attendee(attendee_id=None,course_id=None):
         email = html.escape(request.form['email'])
         dob = html.escape(request.form['dob'])
 
-        # add the new attendee
+        # add the new info to the existing attendee
         database.edit_attendee(f_name, l_name, phone_num, email, dob, attendee_id)
+        # take user back to the course page where they can see what they changed
         return redirect(url_for('course',course_id = course_id))
     else:
+        # give the user the form to fill out all the info
         return render_template('attendee_form.html', attendee_id = attendee_id, attendee=attendee,course_id=course_id, course=course)
 
 @app.route('/courses/<course_id>/attendees/<attendee_id>/delete', methods=['GET','POST'])
 def delete_attendee(attendee_id=None,course_id=None):
+    # get the specific attendee you want
     attendee=database.get_attendee(attendee_id)
     if attendee:
+        # if the user presses delete than get rid of that specific person from the sql file.
         delete=request.args.get('delete',None)
         if delete != None:
             database.delete_attendee(attendee_id)

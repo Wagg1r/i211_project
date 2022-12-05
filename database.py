@@ -115,6 +115,14 @@ def delete_attendee(attendee_id):
             cursor.execute(sql,attendee_id)
         conn.commit()
 
+def delete_attendees(course_id):
+    #Takes an attendee_id and deletes the attendee with that attendee_id from the attendee table
+    sql = "DELETE FROM attendee WHERE course_id =%s"
+    conn = get_connection()
+    with conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql,course_id)
+        conn.commit()
 
 if __name__ == '__main__':
     #add more test code here to make sure your functions are working correctly

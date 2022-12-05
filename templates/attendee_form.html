@@ -21,7 +21,7 @@
     {% set new_dob = '' %}
      
 {% endif %}
-
+<!-- provide a space for people to put info. if they are editing then it should give what the info was before -->
 <form method="POST" name="add_info">
 
     <div class="form-group row">
@@ -58,7 +58,7 @@
             <input type="date" id="dob" name="dob" value="{{new_dob}}" required>
         </div>
     </div>
-
+<!-- give them the option to submit or reset to how it was when they started -->
 <button type="submit" value="Submit" class="btn btn-dark">Submit</button>
 <button type="reset" value="Reset" class="btn btn-dark">Reset</button>
 </form>
