@@ -7,12 +7,7 @@ from app import app
 #Use the uncommented version to test and turn in your code.  
 #Comment out this version and then uncomment and use the second version below when you are importing 
 #this file into your app.py in your I211_project for Project 3.2
-# def get_connection():
-#     return pymysql.connect(host="db.luddy.indiana.edu",
-#                            user="i211f22_thomwagg",
-#                            password="my+sql=i211f22_thomwagg",
-#                            database="i211f22_thomwagg",
-#                            cursorclass=pymysql.cursors.DictCursor)
+
 def get_connection():
     return pymysql.connect(host=app.config['DB_HOST'],
                            user=app.config['DB_USER'],
