@@ -4,7 +4,7 @@
 
 
 {% if attendee_id  %}
-<h1>{{course_id}}</h1>
+<h1>Edit {{attendee[0]['f_name']}} {{attendee[0]['l_name']}}'s attendee info for: {{course[0]['name']}}  </h1>
     {% set new_f_name = attendee[0]['f_name'] %}
     {% set new_l_name = attendee[0]['l_name'] %}
     {% set new_phone_num = attendee[0]['phone_num'] %}
@@ -12,7 +12,7 @@
     {% set new_dob = attendee[0]['dob'] %}
 
 {% else %}
-    <h1>{{course_id}}///</h1>
+    <h1>Add an attendee to {{course[0]['name']}}</h1>
 
     {% set new_f_name ='' %}
     {% set new_l_name ='' %}
@@ -25,7 +25,7 @@
 <form method="POST" name="add_info">
 
     <div class="form-group row">
-        <label for="f_name" class="col-sm-3 col-form-label">First name: {{new_f_name}}</label>
+        <label for="f_name" class="col-sm-3 col-form-label">First name:</label>
         <div class="col-9">
             <input type="text" id="f_name" name="f_name" value="{{new_f_name}}" placeholder="{{new_f_name}}" required>
         </div>
