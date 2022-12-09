@@ -6,29 +6,29 @@
 <!-- level,start_date,start_time,duration,trainer,description -->
 <div>
   <h1 style="color:red;">Delete This Training Course? </h1>
-  <h2>{{course['name']}}</h2>
+  <h2>{{course[0]['name']}}</h2>
     <!-- making a description list alignment so it is nice and neatly presented. it accesses each item individually-->
     <dl class="row">
         <dt class="col-sm-3">Pet type:</dt>
-        <dd class="col-sm-9">{{course['pet_type']}}</dd>
+        <dd class="col-sm-9">{{course[0]['pet_type']}}</dd>
 
         <dt class="col-sm-3">Level:</dt>
-        <dd class="col-sm-9">{{course['level']}}</dd>
+        <dd class="col-sm-9">{{course[0]['level']}}</dd>
 
         <dt class="col-sm-3">Start Date:</dt>
-        <dd class="col-sm-9">{{course['start_date']}}</dd>
+        <dd class="col-sm-9">{{course[0]['start_date']}}</dd>
 
         <dt class="col-sm-3">Start Time:</dt>
-        <dd class="col-sm-9">{{course['start_time']}}</dd>
+        <dd class="col-sm-9">{{course[0]['start_time']}}</dd>
 
         <dt class="col-sm-3">Duration:</dt>
-        <dd class="col-sm-9">{{course['duration']}}</dd>
+        <dd class="col-sm-9">{{course[0]['duration']}}</dd>
 
         <dt class="col-sm-3">Trainer:</dt>
-        <dd class="col-sm-9">{{course['trainer']}}</dd>
+        <dd class="col-sm-9">{{course[0]['trainer']}}</dd>
 
         <dt class="col-sm-3">Description:</dt>
-        <dd class="col-sm-9"><p>{{course['description']}}</p></dd>
+        <dd class="col-sm-9"><p>{{course[0]['description']}}</p></dd>
     
       </dl>
 
